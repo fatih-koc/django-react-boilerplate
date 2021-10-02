@@ -19,7 +19,12 @@ python3 manage.py runserver
 
 Run webpack dev server
 ```bash
-node server.js
+yarn run start
+```
+
+Build Bundles
+```bash
+yarn run build
 ```
 
 Now you can make changes to `frontend/js/app.jsx` and the changes will show up in the browser automagically.
