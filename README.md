@@ -22,4 +22,4 @@ Run webpack dev server
 node server.js
 ```
 
-Now you can make changes to `assets/js/app.jsx` and the changes will show up in the browser automagically.
+Now you can make changes to `frontend/js/app.jsx` and the changes will show up in the browser automagically.

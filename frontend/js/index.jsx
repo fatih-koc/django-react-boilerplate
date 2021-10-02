@@ -7,8 +7,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+
 import ThemingLayout from './components/ThemingLayout';
 
+import "../less/Index.less";
 
 function App() {
   return (
@@ -18,4 +20,4 @@ function App() {
 
 export default App;
 
-ReactDOM.render(<App/>, document.getElementById('react-app'));
+ReactDOM.render(<App/>, document.getElementById('root'));
