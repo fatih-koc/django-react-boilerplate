@@ -2,19 +2,19 @@
 
 Setup virtualenv (optional)
 ```bash
-virtualenv ve
-. ve/bin/activate
+python3 -m venv env
+source env/bin/activate
 ```
 
 Install dependencies
 ```bash
-pip install -r requirements.txt
-npm install
+pip3 install -r requirements.txt
+yarn install
 ```
 
 Run django server
 ```bash
-./manage.py runserver
+python3 manage.py runserver
 ```
 
 Run webpack dev server
