@@ -5,6 +5,14 @@ const webpackBaseConfig = require('./webpack.common.config.js');
 
 
 module.exports = merge(webpackBaseConfig, {
+    mode: 'production',
+    
+    watch: false,
+
+    watchOptions: {
+      ignored: '/node_modules/',
+    },
+
     optimization: {
         minimizer: [
             new UglifyJsPlugin(),

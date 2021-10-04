@@ -12,27 +12,27 @@ module.exports = {
   entry: '../frontend/js/index',
 
   output: {
-    path: path.resolve('./static/'),
-    publicPath: 'http://localhost:3000/static/assets/',
-    filename:  'js/' + "[name]-[hash].js",
+    path: path.resolve('./builds/'),
+    // publicPath: 'http://localhost:3000/static/assets/',
+    filename:  'assets/js/' + "[name]-[hash].js",
     chunkFilename: "[name]-[hash].js"
   },
 
   // Resolve paths
   resolve: {
-    extensions: ['.js', '.jsx', '.less'],
+    extensions: ['.js', '.jsx'],
 
-    byDependency: {
-      // More options can be found here https://webpack.js.org/configuration/resolve/
-      less: {
-        mainFiles: ["custom"],
-      },
-    },
+    // byDependency: {
+    //   // More options can be found here https://webpack.js.org/configuration/resolve/
+    //   less: {
+    //     mainFiles: ["custom"],
+    //   },
+    // },
 
     alias: {
       '@less': path.resolve(__dirname, '../frontend/less/'),
       '@img': path.resolve(__dirname, '../frontend/images/'),
-      '@': path.resolve(__dirname, '../frontend'),
+      '@': path.resolve(__dirname, '../frontend/'),
       '../../theme.config$': path.join(__dirname, '../frontend/semantic-ui/theme.config')
 
 
@@ -76,7 +76,6 @@ module.exports = {
         test: /\.(css)$/i,
         use: [
           MiniCssExtractPlugin.loader,
-          'style-loader', 
           'css-loader',
           'postcss-loader',
         ]
@@ -86,7 +85,8 @@ module.exports = {
         test: /\.less$/i,
         use: [
           {
-            loader: "style-loader", // creates style nodes from JS strings
+            // loader: "style-loader", // creates style nodes from JS strings
+            loader: MiniCssExtractPlugin.loader,
           },
           {
             loader: "css-loader", // translates CSS into CommonJS
@@ -111,7 +111,7 @@ module.exports = {
             loader: "file-loader",
             options: {
               name: '[name].[ext]',
-              outputPath: './images/',
+              outputPath: '../builds/assets/images/',
               publicPath: '../',
               useRelativePaths: true
             }
@@ -126,7 +126,7 @@ module.exports = {
             loader: 'url-loader?limit=10000&mimetype=application/font-woff',
             options: {
               name: '[name].[ext]',
-              outputPath: './fonts/',
+              outputPath: '../builds/assets/fonts/',
               publicPath: '../',
               useRelativePaths: true,
             }
@@ -140,7 +140,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: './fonts/',
+              outputPath: '../builds/assets/fonts/',
               publicPath: '../',
               useRelativePaths: true,
             }
@@ -154,7 +154,7 @@ module.exports = {
             loader: 'file-loader?name=/fonts/[name].[ext]&mimetype=application/font-otf',
             options: {
               name: '[name].[ext]',
-              outputPath: './fonts/',
+              outputPath: '../builds/assets/fonts/',
               publicPath: '../',
               useRelativePaths: true,
             }
@@ -174,8 +174,22 @@ module.exports = {
     new CleanWebpackPlugin(),
 
     new MiniCssExtractPlugin({
-      filename: '[name]-[hash].css',
+      filename: 'assets/css/' +  '[name]-[hash].css',
+      chunkFilename: 'assets/css/' + '[name]-[hash].css',
     }),
+
+
+    new HtmlWebpackPlugin({
+      template: '../frontend/theme.html',
+      inject: true,
+      filename: 'theme.html',
+      minify:{
+          removeComments: true,
+          collapseWhitespace: false
+      }
+    }),
+
+
 
   ],
 
@@ -183,7 +197,7 @@ module.exports = {
   // Runs a server
   devServer: {
     watchContentBase: true,
-    contentBase: __dirname + '/public',
+    contentBase: __dirname + '/builds',
     hot: true,
     compress: false,
     // historyApiFallback: true,
