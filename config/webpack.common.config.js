@@ -13,7 +13,7 @@ module.exports = {
 
   output: {
     path: path.resolve('./builds/'),
-    // publicPath: 'http://localhost:3000/static/assets/',
+    publicPath: 'http://localhost:3000/builds/assets/',
     filename:  'assets/js/' + "[name]-[hash].js",
     chunkFilename: "[name]-[hash].js"
   },
@@ -77,7 +77,7 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'postcss-loader',
+          // 'postcss-loader',
         ]
       },
       //LESS
@@ -85,7 +85,6 @@ module.exports = {
         test: /\.less$/i,
         use: [
           {
-            // loader: "style-loader", // creates style nodes from JS strings
             loader: MiniCssExtractPlugin.loader,
           },
           {
@@ -193,15 +192,12 @@ module.exports = {
 
   ],
 
-
-  // Runs a server
-  devServer: {
-    watchContentBase: true,
-    contentBase: __dirname + '/builds',
-    hot: true,
-    compress: false,
-    // historyApiFallback: true,
-    port: 3000,
-    headers: { 'Access-Control-Allow-Origin': '*' },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
+
+
+
 }
