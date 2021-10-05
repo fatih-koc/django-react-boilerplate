@@ -13,7 +13,7 @@ module.exports = {
 
   output: {
     path: path.resolve('./builds/'),
-    publicPath: 'http://localhost:3000/builds/assets/',
+    // publicPath: 'http://localhost:3000/builds/assets/',
     filename:  'assets/js/' + "[name]-[hash].js",
     chunkFilename: "[name]-[hash].js"
   },
