@@ -7,6 +7,10 @@ module.exports = merge(webpackBaseConfig, {
     
     devtool: 'source-map',
 
+    output: {
+      publicPath: 'http://localhost:3000/',
+    },
+
     watch: true,
     watchOptions: {
       ignored: '/node_modules/',
