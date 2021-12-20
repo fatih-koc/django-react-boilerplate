@@ -27,8 +27,6 @@ module.exports = {
       '@img': path.resolve(__dirname, '../frontend/images/'),
       '@': path.resolve(__dirname, '../frontend'),
       '../../theme.config$': path.join(__dirname, '../frontend/semantic-ui/theme.config')
-
-
     },
     modules: [
       'node_modules',
